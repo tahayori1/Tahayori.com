@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { MenuIcon } from './Icons';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -37,11 +38,11 @@ const Header: React.FC = () => {
                     </a>
                     
                     <div className="hidden md:flex items-center gap-6">
-                        <a href="#benefits" className={`font-medium transition-colors ${isScrolled ? 'text-neutral-700 hover:text-primary-600' : 'text-white hover:text-secondary-200'}`}>{t.header.benefits}</a>
-                        <a href="#products" className={`font-medium transition-colors ${isScrolled ? 'text-neutral-700 hover:text-primary-600' : 'text-white hover:text-secondary-200'}`}>{t.header.products}</a>
-                        <a href="#services" className={`font-medium transition-colors ${isScrolled ? 'text-neutral-700 hover:text-primary-600' : 'text-white hover:text-secondary-200'}`}>{t.header.services}</a>
+                        <a href="#benefits" onClick={handleLinkClick} className={`font-medium transition-colors ${isScrolled ? 'text-neutral-700 hover:text-primary-600' : 'text-white hover:text-secondary-200'}`}>{t.header.benefits}</a>
+                        <a href="#products" onClick={handleLinkClick} className={`font-medium transition-colors ${isScrolled ? 'text-neutral-700 hover:text-primary-600' : 'text-white hover:text-secondary-200'}`}>{t.header.products}</a>
+                        <a href="#services" onClick={handleLinkClick} className={`font-medium transition-colors ${isScrolled ? 'text-neutral-700 hover:text-primary-600' : 'text-white hover:text-secondary-200'}`}>{t.header.services}</a>
                         <LanguageSwitcher />
-                        <a href="#contact" className="bg-primary-600 text-white px-6 py-2.5 rounded-full hover:bg-primary-700 transition-all font-bold shadow-lg shadow-primary-600/30">
+                        <a href="#contact" onClick={handleLinkClick} className="bg-primary-600 text-white px-6 py-2.5 rounded-full hover:bg-primary-700 transition-all font-bold shadow-lg shadow-primary-600/30">
                             {t.header.cta}
                         </a>
                     </div>

@@ -1,4 +1,5 @@
 
+
 import React, { useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -29,26 +30,22 @@ const App: React.FC = () => {
                     top: offsetPosition,
                     behavior: 'smooth'
                 });
-
-                // Also close mobile menu if open
-                const mobileMenu = document.getElementById('mobileMenu');
-                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                     mobileMenu.classList.add('hidden');
-                }
             }
         };
 
         // Delay attaching event listeners to ensure all components are rendered
-        setTimeout(() => {
+        // This helps ensure that event listeners are attached to all anchor tags, including those rendered by child components.
+        const timer = setTimeout(() => {
             const anchors = document.querySelectorAll('a[href^="#"]');
             anchors.forEach(anchor => anchor.addEventListener('click', smoothScroll as EventListener));
-
-            const cleanup = () => {
-                anchors.forEach(anchor => anchor.removeEventListener('click', smoothScroll as EventListener));
-            };
-            return cleanup;
         }, 100);
         
+        // Cleanup function to remove event listeners when the component unmounts
+        return () => {
+            clearTimeout(timer);
+            const anchors = document.querySelectorAll('a[href^="#"]');
+            anchors.forEach(anchor => anchor.removeEventListener('click', smoothScroll as EventListener));
+        };
     }, []);
 
 
